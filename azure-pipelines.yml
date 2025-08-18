@@ -5,7 +5,7 @@ trigger:
       - master
 
 pool:
-  name: Default   # your self-hosted agent pool
+  name: Default   # Use your own agent pool
 
 variables:
   buildConfiguration: 'Debug'
@@ -37,7 +37,7 @@ steps:
   inputs:
     command: 'test'
     projects: '**/*.Tests/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --logger trx --results-directory $(Common.TestResultsDirectory)'
+    arguments: '--configuration $(buildConfiguration)'
 
 - task: PublishTestResults@2
   displayName: 'Publish Test Results'
