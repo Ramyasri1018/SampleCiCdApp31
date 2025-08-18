@@ -31,4 +31,9 @@ steps:
     projects: '**/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
 
-# ✅ Test step removed since no tests exist yet
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish build artifacts'
+  inputs:
+    PathtoPublish: '$(Build.SourcesDirectory)/WebApi/bin/$(buildConfiguration)/netcoreapp3.1'
+    ArtifactName: 'WebApiApp'
+    publishLocation: 'Container'
