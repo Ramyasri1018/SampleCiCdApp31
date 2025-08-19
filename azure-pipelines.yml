@@ -30,10 +30,16 @@ steps:
     command: 'build'
     projects: '**/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
+- task: DotNetCoreCLI@2
+  displayName: 'Publish WebApiApp'
+  inputs:
+    command: 'publish'
+    projects: '**/*.csproj'
+    arguments: '--configuration $(buildConfiguration) --output C:\WebApiApp\Published'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish build artifacts'
   inputs:
-    PathtoPublish: '$(Build.SourcesDirectory)/WebApi/bin/$(buildConfiguration)/netcoreapp3.1'
+    PathtoPublish: 'C:\WebApiApp\Published'
     ArtifactName: 'WebApiApp'
     publishLocation: 'Container'
